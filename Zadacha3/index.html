@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zadacha2</title>
+  </head>
+  <body>
+    Форма
+    <form>
+      <div><input type="text" name="Fio" placeholder="ФИО" /></div>
+      <div><input type="tel" name="Phone" placeholder="Телефон" /></div>
+      <div><input type="email" name="Email" placeholder="Адрес электронной почты" /></div>
+      <div><input type="date" name="Date" /></div>
+      <div>
+        <div>Пол</div>
+        <label>
+          <input type="radio" name="Gender" />
+          Женский
+        </label>
+        <label>
+          <input type="radio" name="Gender" />
+          Мужской
+        </label>
+      </div>
+      <div>
+        <div>Любимый язык программирования</div>
+        <select name="ProgLang" size="5" multiple>
+          <option value="Pascal">Pascal</option>
+          <option value="C">C</option>
+          <option value="C++">C++</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="PHP">PHP</option>
+          <option value="Python">Python</option>
+          <option value="Java">Java</option>
+          <option value="Haskel">Haskel</option>
+          <option value="Clojure">Clojure</option>
+          <option value="Prolog">Prolog</option>
+          <option value="Scala">Scala</option>
+        </select>
+      </div>
+      <textarea name="Bio" placeholder="Биография" cols="40" rows="10"></textarea>
+      <div>
+        <input type="checkbox" name="Kontr" id="Kontr" />
+        <label for="Kontr"> С контрактом ознакомлен(а) </label>
+      </div>
+      <div><button type="submit">Сохранить</button></div>
+    </form>
+  </body>
+</html>
