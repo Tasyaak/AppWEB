@@ -1,0 +1,86 @@
+#main .container {
+  display: flex;
+  flex-direction: column;
+}
+#main {
+  width: 50%;
+}
+
+form {
+  border: 6px solid rgba(28, 20, 173, 0.674);
+  padding: 20px;
+}
+
+body {
+  height: 100%;
+  line-height: 1;
+  font-size: 20px;
+  color: rgba(6, 6, 6, 0.674);
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+}
+
+.header {
+  text-transform: uppercase;
+  font-size: 80%;
+  color: rgba(28, 20, 173, 0.674);
+  text-align: center;
+}
+
+.input {
+  height: 50px;
+  border-radius: 5px;
+  width: 20em;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.form_button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  background-color: rgba(28, 20, 173, 0.674);
+  color: #fff;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 0 5px 0 #0b0b0b;
+  transition: background-color 0.5s ease 0s;
+  position: relative;
+  top: 0;
+}
+.form_button:hover {
+  background-color: rgb(61, 71, 124);
+}
+.form_button:active {
+  top: 3px;
+  box-shadow: 0 2px 0 #0b0b0b;
+}
+
+select[multiple] {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #ffffff;
+  background-image: none;
+  padding: 0 0.5em;
+  color: #0b0b0b;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: "Open Sans", sans-serif;
+}
