@@ -1,5 +1,6 @@
-<form action="" method="post" class="form">
-  <div>
+<body>
+    <form action="" method="post" class="form">
+      <div>
         <div class="head">
           <h2><b>Форма обратной связи</b></h2>
         </div>
@@ -13,7 +14,7 @@
         </div>
 
         <div>
-          <label> <input name="email" type="email" class="input" placeholder="Введите почту" /> </label>
+          <label> <input name="email" type="email" class="input" placeholder="Почта" /> </label>
         </div>
 
         <div>
@@ -60,8 +61,7 @@
         </div>
 
         <button type="submit" class="button my-3">Отправить</button>
-  </div>
-</form>
-
-</body>
+      </div>
+    </form>
+  </body>
 </html>
