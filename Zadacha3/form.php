@@ -1,4 +1,3 @@
-<body>
   <form action="" method="post" class="form">
     <div>
       <div class="head">
@@ -10,7 +9,7 @@
       </div>
 
       <div>
-        <label> <input type="tel" name="phone" class="input" placeholder="Номер телефона" /> </label>
+        <label> <input type="tel" name="number" class="input" placeholder="Номер телефона" /> </label>
       </div>
 
       <div>
@@ -34,7 +33,7 @@
       <div>
         <label class="input">
           <div>Любимый язык программирования</div>
-          <select class="my-2" name="language" multiple="multiple">
+          <select class="my-2" name="language[]" multiple="multiple">
             <option value="Pascal">Pascal</option>
             <option value="C">C</option>
             <option value="C++">C++</option>
