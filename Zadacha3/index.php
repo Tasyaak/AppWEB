@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="bootstrap.min.css" />
     <title>Zadacha 3</title>
   </head>
-  
-  <body>
 
 <?php
 
