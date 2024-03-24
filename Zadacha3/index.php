@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="bootstrap.min.css" />
     <title>Zadacha 3</title>
   </head>
+  
   <body>
 
 <?php
@@ -46,13 +47,13 @@ function val_empty($val, $fio, $o = 0){
 
 $errors = '';
 $fio = (isset($_POST['fio']) ? $_POST['fio'] : '');
-$number = (isset($_POST['number']) ? $_POST['number'] : '');
+$number= (isset($_POST['number']) ? $_POST['number'] : '');
 $email = (isset($_POST['email']) ? $_POST['email'] : '');
-$data = (isset($_POST['data']) ? strtotime($_POST['data']) : '');
+$date = (isset($_POST['date']) ? strtotime($_POST['date']) : '');
 $radio = (isset($_POST['radio']) ? $_POST['radio'] : '');
 $language = (isset($_POST['language']) ? $_POST['language'] : '');
 $biography = (isset($_POST['biography']) ? $_POST['biography'] : '');
-$check_mark = (isset($_POST['check_mark']) ? $_POST['check_mark'] : '');
+$check = (isset($_POST['check']) ? $_POST['check'] : '');
 
 
 $number = preg_replace('/\D/', '', $number);
@@ -62,11 +63,11 @@ $languages = ($language != '') ? implode(", ", $language) : [];
 val_empty($fio, "имя");
 val_empty($number, "телефон");
 val_empty($email, "email");
-val_empty($data, "дата");
+val_empty($date, "дата");
 val_empty($radio, "пол", 1);
 val_empty($language, "языки", 1);
 val_empty($biography, "биографию");
-val_empty($check_mark, "ознакомлен", 2);
+val_empty($check, "ознакомлен", 2);
 if(empty($fio)){
   print('пустое поле фио');
 }
@@ -86,10 +87,10 @@ elseif(strlen($number) > 255){
 elseif(!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $email)){
   $errors = 'Неверное значение поля "email"';
 }
-elseif(!is_numeric($data) || strtotime("now") < $birthday){
+elseif(!is_numeric($date) || strtotime("now") < $date){
   $errors = 'Укажите корректно дату';
 }
-elseif($radio != "male" && $radio != "female"){
+elseif($radio != "M" && $radio != "W"){
   $errors = 'Укажите пол';
 }
 elseif(count($language) == 0){
@@ -133,8 +134,8 @@ if ($errors != '') {
 }
 
 try {
-  $stmt = $db->prepare("INSERT INTO form_data (name, number, email, data, radio, biography) VALUES (?, ?, ?, ?, ?, ?)");
-  $stmt->execute([$fio, $number, $email, $data, $radio, $biography]);
+  $stmt = $db->prepare("INSERT INTO form_data (name, number, email, date, radio, biography) VALUES (?, ?, ?, ?, ?, ?)");
+  $stmt->execute([$fio, $number, $email, $date, $radio, $biography]);
   $fid = $db->lastInsertId();
   $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
   foreach($languages as $row){
