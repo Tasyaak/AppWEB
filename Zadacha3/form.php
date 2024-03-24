@@ -10,7 +10,7 @@
       </div>
 
       <div>
-        <label> <input type="tel" name="phone" class="input" list="tel-list" placeholder="Номер телефона" /> </label>
+        <label> <input type="tel" name="phone" class="input" placeholder="Номер телефона" /> </label>
       </div>
 
       <div>
@@ -35,16 +35,16 @@
         <label class="input">
           <div>Любимый язык программирования</div>
           <select class="my-2" name="language" multiple="multiple">
-            <option>Pascal</option>
-            <option>C</option>
-            <option>C++</option>
-            <option>JavaScript</option>
-            <option>PHP</option>
-            <option>Python</option>
-            <option>Java</option>
-            <option>Haskel</option>
-            <option>Clojure</option>
-            <option>Scala</option>
+            <option value="Pascal">Pascal</option>
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="PHP">PHP</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="Haskel">Haskel</option>
+            <option value="Clojure">Clojure</option>
+            <option value="Scala">Scala</option>
           </select>
         </label>
       </div>
