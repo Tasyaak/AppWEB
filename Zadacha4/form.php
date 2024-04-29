@@ -52,9 +52,9 @@
       </div>
       
       <div>
-        <label class="input">
+        <label class="input <?php echo ($errors['language'] != NULL) ? 'red' : ''; ?>">
           <div>Любимый язык программирования</div>
-          <select class="my-2 <?php echo ($errors['language'] != NULL) ? 'red' : ''; ?>" name="language[]" multiple="multiple">
+          <select class="my-2" name="language[]" multiple="multiple">
             <option value="Pascal" <?php echo (in_array('Pascal', $languages)) ? 'selected' : ''; ?>>Pascal</option>
             <option value="C" <?php echo (in_array('C', $languages)) ? 'selected' : ''; ?>>C</option>
             <option value="C++" <?php echo (in_array('C++', $languages)) ? 'selected' : ''; ?>>C++</option>
@@ -81,7 +81,7 @@
       <div>
         <label>
             <input name="check" type="checkbox" <?php echo ($values['check'] != NULL) ? 'checked' : ''; ?>/>
-            <span class="<?php echo ($errors['check'] != NULL) ? 'error' : ''; ?>"> С контрактом ознакомлен(а) </span>
+              С контрактом ознакомлен(а)
           <div class="error"> <?php echo $messages['check']?> </div>
         </label>
       </div>

@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     if(!check_pole('number', 'Это поле пустое', empty($number)))
     {
         check_pole('number', 'Неправильный формат, должно быть 11 символов', strlen($number) != 11);
-        check_pole('number', 'Поле должен содержать только цифры', $number != preg_replace('/\D/', '', $number));
+        check_pole('number', 'Поле должно содержать только цифры', $number != preg_replace('/\D/', '', $number));
     }
     if(!check_pole('email', 'Это поле пустое', empty($email)))
         check_pole('email', 'Неправильный формат: example@mail.ru', !preg_match('/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/', $email));
