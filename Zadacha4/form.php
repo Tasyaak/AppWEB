@@ -52,7 +52,7 @@
       </div>
       
       <div>
-        <label class="input <?php echo ($errors['language'] != NULL) ? 'red' : ''; ?>">
+        <label class="<?php echo ($errors['language'] != NULL) ? 'red' : ''; ?>">
           <div>Любимый язык программирования</div>
           <select class="my-2" name="language[]" multiple="multiple">
             <option value="Pascal" <?php echo (in_array('Pascal', $languages)) ? 'selected' : ''; ?>>Pascal</option>
