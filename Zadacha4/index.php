@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $date = isset($_POST['date']) ? strtotime($_POST['date']) : '';
     $radio = isset($_POST['radio']) ? $_POST['radio'] : '';
     $language = isset($_POST['language']) ? $_POST['language'] : '';
-    $biography = isset($_POST['biography']) ? $_POST['biography'] : '';
+    $bio = isset($_POST['bio']) ? $_POST['bio'] : '';
     $check = isset($_POST['check']) ? $_POST['check'] : '';
     
     function check_pole($cook, $str, $flag)
@@ -46,8 +46,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         check_pole('date', 'Неправильная дата', strtotime('now') < $date);
     if(!check_pole('radio', 'Это поле пустое', empty($radio)))
         check_pole('radio', "Не выбран пол", (empty($radio) || !preg_match('/^(M|W)$/', $radio)));
-    if(!check_pole('biography', 'Это поле пустое', empty($biography)))
-        check_pole('biography', 'Слишком длинное поле, максимум символов - 65535', strlen($biography) > 65535);
+    if(!check_pole('bio', 'Это поле пустое', empty($bio)))
+        check_pole('bio', 'Слишком длинное поле, максимум символов - 65535', strlen($bio) > 65535);
     check_pole('check', 'Не ознакомлены с контрактом', empty($check));
 
     include('database.php');
@@ -80,7 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
       setcookie('date_error', '', time() - 30 * 24 * 60 * 60);
       setcookie('radio_error', '', time() - 30 * 24 * 60 * 60);
       setcookie('language_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('biography_error', '', time() - 30 * 24 * 60 * 60);
+      setcookie('bio_error', '', time() - 30 * 24 * 60 * 60);
       setcookie('check_error', '', time() - 30 * 24 * 60 * 60);
       setcookie('save', '1');
     }
@@ -88,14 +88,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 }
 else
 {
-    $fio = $_COOKIE['fio_error'];
-    $number = $_COOKIE['number_error'];
-    $email = $_COOKIE['email_error'];
-    $date = $_COOKIE['date_error'];
-    $radio = $_COOKIE['radio_error'];
-    $language = $_COOKIE['language_error'];
-    $biography = $_COOKIE['biography_error'];
-    $check = $_COOKIE['check_error'];
+    $fio = !empty($_COOKIE['fio_error']) ? $_COOKIE['fio_error'] : '';
+    $number = !empty($_COOKIE['number_error']) ? $_COOKIE['number_error'] : '';
+    $email = !empty($_COOKIE['email_error']) ? $_COOKIE['email_error'] : '';
+    $date = !empty($_COOKIE['date_error']) ? $_COOKIE['date_error'] : '';
+    $radio = !empty($_COOKIE['radio_error']) ? $_COOKIE['radio_error'] : '';
+    $language = !empty($_COOKIE['language_error']) ? $_COOKIE['language_error'] : '';
+    $bio = !empty($_COOKIE['bio_error']) ? $_COOKIE['bio_error'] : '';
+    $check = !empty($_COOKIE['check_error']) ? $_COOKIE['check_error'] : '';
 
     $errors = array();
     $messages = array();
@@ -105,10 +105,7 @@ else
     {
         global $errors, $messages, $values;
         $errors[$str] = !empty($pole);
-        if(!empty($pole))
-            $messages[$str] = "<div class=\"Error\">$pole</div>";
-        else
-            $messages[$str] = "<div class=\"Error\"></div>";
+        $messages[$str] = "<div class=\"error\">$pole</div>";
         $values[$str] = empty($_COOKIE[$str.'_value']) ? '' : $_COOKIE[$str.'_value'];
         setcookie($str.'_error', '', time() - 30 * 24 * 60 * 60);
         return;
@@ -128,7 +125,7 @@ else
     check_pole('date', $date);
     check_pole('radio', $radio);
     check_pole('language', $language);
-    check_pole('biography', $biography);
+    check_pole('bio', $bio);
     check_pole('check', $check);
 
     $languages = explode(',', $values['language']);
