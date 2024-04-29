@@ -20,6 +20,7 @@ body {
   height: 50px;
   width: 400px;
   margin: 6px 0;
+  border: 7px;
 }
 
 .button {
@@ -47,4 +48,5 @@ select {
 
 .error {
   color: red;
+  margin-bottom: 15px;
 }

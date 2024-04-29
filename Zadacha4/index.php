@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     $date = isset($_POST['date']) ? strtotime($_POST['date']) : '';
     $radio = isset($_POST['radio']) ? $_POST['radio'] : '';
-    $language = isset($_POST['language']) ? $_POST['language'] : '';
+    $language = isset($_POST['language']) ? $_POST['language'] : [];
     $bio = isset($_POST['bio']) ? $_POST['bio'] : '';
     $check = isset($_POST['check']) ? $_POST['check'] : '';
     
@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         global $error;
         $res = false;
-        $setval = $_POST[$cook];
+        $setval = isset($_POST[$cook]) ? $_POST[$cook] : '';
         if($flag)
         {
             setcookie($cook.'_error', $str, time() + 24*60*60);
@@ -73,15 +73,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     
     if (!$error)
     {
-      setcookie('fio_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('number_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('email_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('date_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('radio_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('language_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('bio_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('check_error', '', time() - 30 * 24 * 60 * 60);
-      setcookie('save', '1');
+        setcookie('fio_error', '', time() - 30 * 24 * 60 * 60);
+        setcookie('number_error', '', time() - 30 * 24 * 60 * 60);
+        setcookie('email_error', '', time() - 30 * 24 * 60 * 60);
+        setcookie('date_error', '', time() - 30 * 24 * 60 * 60);
+        setcookie('radio_error', '', time() - 30 * 24 * 60 * 60);
+        setcookie('language_error', '', time() - 30 * 24 * 60 * 60);
+        setcookie('bio_error', '', time() - 30 * 24 * 60 * 60);
+        setcookie('check_error', '', time() - 30 * 24 * 60 * 60);
+        try
+        {
+            $stmt = $db->prepare("INSERT INTO form_data (fio, phone, email, birthday, gender, biography) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$fio, $phone, $email, $birthday, $gender, $biography]);
+            $fid = $db->lastInsertId();
+            $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
+            foreach($languages as $row)
+                $stmt1->execute([$fid, $row['id']]);
+        }
+        catch(PDOException $e)
+        {
+            print('Error : ' . $e->getMessage());
+            exit();
+        }
+        setcookie('fio_value', $fio, time() + 24 * 60 * 60 * 365);
+        setcookie('number_value', $number, time() + 24 * 60 * 60 * 365);
+        setcookie('email_value', $email, time() + 24 * 60 * 60 * 365);
+        setcookie('date_value', $date, time() + 24 * 60 * 60 * 365);
+        setcookie('radio_value', $radio, time() + 24 * 60 * 60 * 365);
+        setcookie('language_value', $language, time() + 24 * 60 * 60 * 365);
+        setcookie('bio_value', $bio, time() + 24 * 60 * 60 * 365);
+        setcookie('check_value', $check, time() + 24 * 60 * 60 * 365);
+
+        setcookie('save', '1');
     }
     header('Location: index.php');
 }
