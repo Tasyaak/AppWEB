@@ -36,9 +36,8 @@ option {
 }
 
 select {
-  height: 50px;
-  width: 400px;
-  margin: 6px 0;
+  width: 100%;
+  outline: none;
 }
 
 .mess {
