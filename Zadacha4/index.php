@@ -44,8 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         check_pole('email', 'Неправильный формат: example@mail.ru', !preg_match('/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/', $email));
     if(!check_pole('date', 'Это поле пустое', empty($date)))
         check_pole('date', 'Неправильная дата', strtotime('now') < $date);
-    if(!check_pole('radio', 'Это поле пустое', empty($radio)))
-        check_pole('radio', "Не выбран пол", (empty($radio) || !preg_match('/^(M|W)$/', $radio)));
+    check_pole('radio', "Не выбран пол", empty($radio) || !preg_match('/^(M|W)$/', $radio));
     if(!check_pole('bio', 'Это поле пустое', empty($bio)))
         check_pole('bio', 'Слишком длинное поле, максимум символов - 65535', strlen($bio) > 65535);
     check_pole('check', 'Не ознакомлены с контрактом', empty($check));

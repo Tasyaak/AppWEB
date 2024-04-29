@@ -25,7 +25,7 @@
       </div>
       
       <div>
-        <label> <input name="email" class="input <?php echo ($errors['email'] != NULL) ? 'red' : ''; ?>" value="<?php echo $values['email']; ?>" type="email" placeholder="Почта" /> </label>
+        <label> <input name="email" class="input <?php echo ($errors['email'] != NULL) ? 'red' : ''; ?>" value="<?php echo $values['email']; ?>" type="text" placeholder="Почта" /> </label>
         <div class="error"> <?php echo $messages['email']?> </div>
       </div>
       
