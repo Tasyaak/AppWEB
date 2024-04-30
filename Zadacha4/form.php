@@ -31,7 +31,7 @@
       
       <div>
         <label>
-          <input name="date" class="input <?php echo ($errors['date'] != NULL) ? 'red' : ''; ?>" value="<?php echo $values['date']; ?>" type="date" />
+          <input name="date" class="input <?php echo ($errors['date'] != NULL) ? 'red' : ''; ?>" value="<?php echo date("Y-m-d", $values['date']); ?>" type="date" />
           <div class="error"> <?php echo $messages['date']?> </div>
         </label>
       </div>
