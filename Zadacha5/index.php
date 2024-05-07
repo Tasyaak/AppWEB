@@ -213,8 +213,8 @@ else
         {
             $dbLangs = $db->prepare("SELECT * FROM form_data WHERE user_id = ?");
             $dbLangs->execute([$_SESSION['user_id']]);
-            $nichego = $dbLangs->fetchAll(PDO::FETCH_ASSOC);
-            print_r($nichego);
+            $nichego = $dbLangs->fetchAll(PDO::FETCH_ASSOC)[0];
+            
             $form_id = $nichego['id'];
             $_SESSION['form_id'] = $form_id;
 
