@@ -90,7 +90,7 @@
       </div>
        <?php
           if($log) echo '<button type="submit" class="edbut">Изменить</button>';
-          else echo '<button type="submit">Отправить</button>';
+          else echo '<button class="button" type="submit">Отправить</button>';
         ?>
     </form>
   </body>
