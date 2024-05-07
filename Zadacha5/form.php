@@ -36,7 +36,7 @@
       
       <div>
         <label>
-          <input name="date" class="input <?php echo ($errors['date'] != NULL) ? 'red' : ''; ?>" value="<?php if($values['date'] > 100000) echo date("Y-m-d", $values['date']); ?>" type="date" />
+          <input name="date" class="input <?php echo ($errors['date'] != NULL) ? 'red' : ''; ?>" value="<?php if(strtotime($values['date']) > 100000) echo date("Y-m-d", $values['date']); ?>" type="date" />
           <div class="error"> <?php echo $messages['date']?> </div>
         </label>
       </div>
