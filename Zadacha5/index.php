@@ -213,9 +213,8 @@ else
         {
             $dbLangs = $db->prepare("SELECT * FROM form_data WHERE user_id = ?");
             $dbLangs->execute([$_SESSION['user_id']]);
-            echo $_SESSION['user_id'].'sdfs';
             $nichego = $dbLangs->fetchAll(PDO::FETCH_ASSOC);
-
+            print_r($nichego);
             $form_id = $nichego['id'];
             $_SESSION['form_id'] = $form_id;
 
