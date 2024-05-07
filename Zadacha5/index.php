@@ -235,7 +235,7 @@ else
             set_val('radio', $nichego['radio']);
             set_val('language', $language);
             set_val('bio', $nichego['bio']);
-            set_val('check', $nichego['check']);
+            set_val('check', "1");
         }
         catch(PDOException $e)
         {
