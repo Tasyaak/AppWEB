@@ -102,15 +102,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
         if($log)
         {
-            // $stmt = $db->prepare("UPDATE form_data SET fio = ?, number = ?, email = ?, date = ?, radio = ?, bio = ? WHERE user_id = ?");
-            // $stmt->execute([$fio, $number, $email, strtotime($date), $radio, $bio, $_SESSION['user_id']]);
+            $stmt = $db->prepare("UPDATE form_data SET fio = ?, number = ?, email = ?, date = ?, radio = ?, bio = ? WHERE user_id = ?");
+            $stmt->execute([$fio, $number, $email, strtotime($date), $radio, $bio, $_SESSION['user_id']]);
 
-            // $stmt = $db->prepare("DELETE FROM form_data_lang WHERE id_form = ?");
-            // $stmt->execute([$_SESSION['form_id']]);
+            $stmt = $db->prepare("DELETE FROM form_data_lang WHERE id_form = ?");
+            $stmt->execute([$_SESSION['form_id']]);
 
-            // $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
-            // foreach($languages as $row)
-            //     $stmt1->execute([$_SESSION['form_id'], $row['id']]);
+            $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
+            foreach($languages as $row)
+                $stmt1->execute([$_SESSION['form_id'], $row['id']]);
         }
         else
         {
@@ -209,42 +209,42 @@ else
 
     $languages = explode(',', $values['language']);
 
-    if ($error && !empty($_SESSION['login']))
-    {
-        try
-        {
-            $dbLangs = $db->prepare("SELECT * FROM form_data WHERE user_id = ?");
-            $dbLangs->execute([$_SESSION['user_id']]);
-            $nichego = $dbLangs->fetchAll(PDO::FETCH_ASSOC);
+    // if ($error && !empty($_SESSION['login']))
+    // {
+    //     try
+    //     {
+    //         $dbLangs = $db->prepare("SELECT * FROM form_data WHERE user_id = ?");
+    //         $dbLangs->execute([$_SESSION['user_id']]);
+    //         $nichego = $dbLangs->fetchAll(PDO::FETCH_ASSOC);
 
-            $form_id = $nichego['id'];
-            $_SESSION['form_id'] = $form_id;
+    //         $form_id = $nichego['id'];
+    //         $_SESSION['form_id'] = $form_id;
 
-            $dbL = $db->prepare("SELECT l.name FROM form_data_lang f
-                              LEFT JOIN languages l ON l.id = f.id_lang
-                              WHERE f.id_form = ?");
+    //         $dbL = $db->prepare("SELECT l.name FROM form_data_lang f
+    //                           LEFT JOIN languages l ON l.id = f.id_lang
+    //                           WHERE f.id_form = ?");
             
-            $dbL->execute([$form_id]);
+    //         $dbL->execute([$form_id]);
 
-            $languages = [];
-            foreach($dbL->fetchAll(PDO::FETCH_ASSOC) as $item)
-                $languages[] = $item['name'];
+    //         $languages = [];
+    //         foreach($dbL->fetchAll(PDO::FETCH_ASSOC) as $item)
+    //             $languages[] = $item['name'];
 
-            set_val('fio', $nichego['fio']);
-            set_val('number', $nichego['number']);
-            set_val('email', $nichego['email']);
-            set_val('date', date("Y-m-d", $nichego['date']));
-            set_val('radio', $nichego['radio']);
-            set_val('language', $language);
-            set_val('bio', $nichego['bio']);
-            set_val('check', $nichego['check']);
-        }
-        catch(PDOException $e)
-        {
-            print('Error : '.$e->getMessage());
-            exit();
-        }
-    }
+    //         set_val('fio', $nichego['fio']);
+    //         set_val('number', $nichego['number']);
+    //         set_val('email', $nichego['email']);
+    //         set_val('date', date("Y-m-d", $nichego['date']));
+    //         set_val('radio', $nichego['radio']);
+    //         set_val('language', $language);
+    //         set_val('bio', $nichego['bio']);
+    //         set_val('check', $nichego['check']);
+    //     }
+    //     catch(PDOException $e)
+    //     {
+    //         print('Error : '.$e->getMessage());
+    //         exit();
+    //     }
+    // }
 
     include('form.php');
 }
