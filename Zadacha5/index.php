@@ -125,7 +125,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 $stmt->execute([$login, $mpass]);
                 $user_id = $db->lastInsertId();
 
-                $stmt = $db->prepare("INSERT INTO form_data (user_id, fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt = $db->prepare("INSERT INTO form_data (user_id, fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?, ? )");
                 $stmt->execute([$user_id, $fio, $number, $email, strtotime($date), $radio, $bio]);
                 $fid = $db->lastInsertId();
 
@@ -143,7 +143,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             setcookie('email_value', $email, time() + 24 * 60 * 60 * 365);
             setcookie('date_value', $date, time() + 24 * 60 * 60 * 365);
             setcookie('radio_value', $radio, time() + 24 * 60 * 60 * 365);
-            setcookie('language_value', $language, time() + 24 * 60 * 60 * 365);
+            setcookie('language_value', implode(",", $language), time() + 24 * 60 * 60 * 365);
             setcookie('bio_value', $bio, time() + 24 * 60 * 60 * 365);
             setcookie('check_value', $check, time() + 24 * 60 * 60 * 365);
         }
