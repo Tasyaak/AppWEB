@@ -70,24 +70,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         check_pole('bio', 'Слишком длинное поле, максимум символов - 65535', strlen($bio) > 65535);
     check_pole('check', 'Не ознакомлены с контрактом', empty($check));
 
-    // if(!check_pole('language', 'Не выбран язык', empty($language)))
-    // {
-    //     try
-    //     {
-    //         $inQuery = implode(',', array_fill(0, count($language), '?'));
-    //         $dbLangs = $db->prepare("SELECT id, name FROM languages WHERE name IN ($inQuery)");
-    //         foreach ($language as $key => $value)
-    //             $dbLangs->bindValue(($key+1), $value);
-    //         $dbLangs->execute();
-    //         $languages = $dbLangs->fetchAll(PDO::FETCH_ASSOC);
-    //     }
-    //     catch(PDOException $e)
-    //     {
-    //         print('Error : '.$e->getMessage());
-    //         exit();
-    //     }
-    //     check_pole('language', 'Неверно выбраны языки', $dbLangs->rowCount() != count($language));
-    // }
+    if(!check_pole('language', 'Не выбран язык', empty($language)))
+    {
+        try
+        {
+            $inQuery = implode(',', array_fill(0, count($language), '?'));
+            $dbLangs = $db->prepare("SELECT id, name FROM languages WHERE name IN ($inQuery)");
+            foreach ($language as $key => $value)
+                $dbLangs->bindValue(($key+1), $value);
+            $dbLangs->execute();
+            $languages = $dbLangs->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e)
+        {
+            print('Error : '.$e->getMessage());
+            exit();
+        }
+        check_pole('language', 'Неверно выбраны языки', $dbLangs->rowCount() != count($language));
+    }
     
     if (!$error)
     {
@@ -119,25 +119,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             setcookie('login', $login);
             setcookie('pass', $pass);
             $mpass = md5($pass);
-            try
-            {
-                $stmt = $db->prepare("INSERT INTO users (login, password) VALUES (?, ?)");
-                $stmt->execute([$login, $mpass]);
-                $user_id = $db->lastInsertId();
+            // try
+            // {
+            //     $stmt = $db->prepare("INSERT INTO users (login, password) VALUES (?, ?)");
+            //     $stmt->execute([$login, $mpass]);
+            //     $user_id = $db->lastInsertId();
 
-                $stmt = $db->prepare("INSERT INTO form_data (user_id, fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$user_id, $fio, $number, $email, strtotime($date), $radio, $bio]);
-                $fid = $db->lastInsertId();
+            //     $stmt = $db->prepare("INSERT INTO form_data (user_id, fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?)");
+            //     $stmt->execute([$user_id, $fio, $number, $email, strtotime($date), $radio, $bio]);
+            //     $fid = $db->lastInsertId();
 
-                $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
-                foreach($languages as $row)
-                    $stmt1->execute([$fid, $row['id']]);
-            }
-            catch(PDOException $e)
-            {
-                print('Error : ' . $e->getMessage());
-                exit();
-            }
+            //     $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
+            //     foreach($languages as $row)
+            //         $stmt1->execute([$fid, $row['id']]);
+            // }
+            // catch(PDOException $e)
+            // {
+            //     print('Error : ' . $e->getMessage());
+            //     exit();
+            // }
             setcookie('fio_value', $fio, time() + 24 * 60 * 60 * 365);
             setcookie('number_value', $number, time() + 24 * 60 * 60 * 365);
             setcookie('email_value', $email, time() + 24 * 60 * 60 * 365);
