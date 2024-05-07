@@ -125,7 +125,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 $stmt->execute([$login, $mpass]);
                 $user_id = $db->lastInsertId();
 
-                $stmt = $db->prepare("INSERT INTO form_data (user_id, fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt = $db->prepare("INSERT INTO form_data (user_id, fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?, ?)");
                 $stmt->execute([$user_id, $fio, $number, $email, strtotime($date), $radio, $bio]);
                 $fid = $db->lastInsertId();
 
