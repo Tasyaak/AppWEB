@@ -45,11 +45,11 @@
         <div>Пол</div>
         <div class="mb-1">
           <label>
-            <input name="radio" class="ml-2" type="radio" value="M" />
+            <input name="radio" class="ml-2" type="radio" value="M" <?php if($values['radio'] == 'M') echo 'checked'; ?>/>
             <span class="<?php echo ($errors['radio'] != NULL) ? 'error' : ''; ?>"> Мужской </span>
           </label>
           <label>
-            <input name="radio" class="ml-4" type="radio" value="W" />
+            <input name="radio" class="ml-4" type="radio" value="W" <?php if($values['radio'] == 'W') echo 'checked'; ?>/>
             <span class="<?php echo ($errors['radio'] != NULL) ? 'error' : ''; ?>"> Женский </span>
           </label>
         </div>
