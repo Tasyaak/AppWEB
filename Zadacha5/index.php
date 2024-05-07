@@ -102,15 +102,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
         if($log)
         {
-            $stmt = $db->prepare("UPDATE form_data SET fio = ?, number = ?, email = ?, date = ?, radio = ?, bio = ? WHERE user_id = ?");
-            $stmt->execute([$fio, $number, $email, strtotime($date), $radio, $bio, $_SESSION['user_id']]);
+            // $stmt = $db->prepare("UPDATE form_data SET fio = ?, number = ?, email = ?, date = ?, radio = ?, bio = ? WHERE user_id = ?");
+            // $stmt->execute([$fio, $number, $email, strtotime($date), $radio, $bio, $_SESSION['user_id']]);
 
-            $stmt = $db->prepare("DELETE FROM form_data_lang WHERE id_form = ?");
-            $stmt->execute([$_SESSION['form_id']]);
+            // $stmt = $db->prepare("DELETE FROM form_data_lang WHERE id_form = ?");
+            // $stmt->execute([$_SESSION['form_id']]);
 
-            $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
-            foreach($languages as $row)
-                $stmt1->execute([$_SESSION['form_id'], $row['id']]);
+            // $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
+            // foreach($languages as $row)
+            //     $stmt1->execute([$_SESSION['form_id'], $row['id']]);
         }
         else
         {
@@ -119,25 +119,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             setcookie('login', $login);
             setcookie('pass', $pass);
             $mpass = md5($pass);
-            // try
-            // {
-            //     $stmt = $db->prepare("INSERT INTO users (login, password) VALUES (?, ?)");
-            //     $stmt->execute([$login, $mpass]);
-            //     $user_id = $db->lastInsertId();
+            try
+            {
+                $stmt = $db->prepare("INSERT INTO users (login, password) VALUES (?, ?)");
+                $stmt->execute([$login, $mpass]);
+                $user_id = $db->lastInsertId();
 
-            //     $stmt = $db->prepare("INSERT INTO form_data (user_id, fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?)");
-            //     $stmt->execute([$user_id, $fio, $number, $email, strtotime($date), $radio, $bio]);
-            //     $fid = $db->lastInsertId();
+                $stmt = $db->prepare("INSERT INTO form_data (user_id, fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$user_id, $fio, $number, $email, strtotime($date), $radio, $bio]);
+                $fid = $db->lastInsertId();
 
-            //     $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
-            //     foreach($languages as $row)
-            //         $stmt1->execute([$fid, $row['id']]);
-            // }
-            // catch(PDOException $e)
-            // {
-            //     print('Error : ' . $e->getMessage());
-            //     exit();
-            // }
+                $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
+                foreach($languages as $row)
+                    $stmt1->execute([$fid, $row['id']]);
+            }
+            catch(PDOException $e)
+            {
+                print('Error : ' . $e->getMessage());
+                exit();
+            }
             setcookie('fio_value', $fio, time() + 24 * 60 * 60 * 365);
             setcookie('number_value', $number, time() + 24 * 60 * 60 * 365);
             setcookie('email_value', $email, time() + 24 * 60 * 60 * 365);
