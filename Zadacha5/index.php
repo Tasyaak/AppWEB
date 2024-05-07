@@ -1,12 +1,12 @@
 <?php
 
-$db;
-include('database.php');
-header("Content Type: text/html, charset-UTF-8");
-session_start();
+// $db;
+// include('database.php');
+// header("Content Type: text/html, charset-UTF-8");
+// session_start();
 
-$error = false;
-$log = !empty($_SESSION['login']);
+// $error = false;
+// $log = !empty($_SESSION['login']);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
