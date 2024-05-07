@@ -76,7 +76,7 @@
       <div class="my-2">
         <div>Биография</div>
         <label>
-          <textarea name="bio" class="input <?php echo ($errors['bio'] != NULL) ? 'red' : ''; ?>" placeholder="Биография"> <?php echo $values['bio']; ?> </textarea>
+          <textarea name="bio" class="input <?php echo ($errors['bio'] != NULL) ? 'red' : ''; ?>" placeholder="Биография"><?php echo $values['bio']; ?></textarea>
           <div class="error"> <?php echo $messages['bio']?> </div>
         </label>
       </div>
