@@ -12,7 +12,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        require('connection.php');
+        require('database.php');
         $login = $_POST['login'];
         $password = md5($_POST['password']);
         try
@@ -48,7 +48,7 @@
     <title>Zadacha 5</title>
 </head>
 <body>
-    <form action="" method="post" class="from">
+    <form action="" method="post" class="form">
         <div class="mess" style="color: red;"><?php echo $error; ?></div>
         <h1>Авторизация</h1>
         <div> <input style="width: 100%;" type="text" name="login" placeholder="Логин"> </div>

@@ -13,7 +13,7 @@
         <h2><b>Форма обратной связи</b></h2>
       </div>
       <?php
-        if($log) echo '<button type="submit" class="logout_form" name="logout_form">Выйти</button>'; 
+        if($log) echo '<button class="button" type="submit" class="logout_form" name="logout_form">Выйти</button>'; 
         else echo '<a href="login.php" class="login_form" name="logout_form">Войти</a>';
       ?>
 
@@ -89,7 +89,7 @@
         </label>
       </div>
        <?php
-          if($log) echo '<button type="submit" class="edbut">Изменить</button>';
+          if($log) echo '<button class="button" type="submit" class="edbut">Изменить</button>';
           else echo '<button class="button" type="submit">Отправить</button>';
         ?>
     </form>
