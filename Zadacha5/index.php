@@ -70,24 +70,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         check_pole('bio', 'Слишком длинное поле, максимум символов - 65535', strlen($bio) > 65535);
     check_pole('check', 'Не ознакомлены с контрактом', empty($check));
 
-    if(!check_pole('language', 'Не выбран язык', empty($language)))
-    {
-        try
-        {
-            $inQuery = implode(',', array_fill(0, count($language), '?'));
-            $dbLangs = $db->prepare("SELECT id, name FROM languages WHERE name IN ($inQuery)");
-            foreach ($language as $key => $value)
-                $dbLangs->bindValue(($key+1), $value);
-            $dbLangs->execute();
-            $languages = $dbLangs->fetchAll(PDO::FETCH_ASSOC);
-        }
-        catch(PDOException $e)
-        {
-            print('Error : '.$e->getMessage());
-            exit();
-        }
-        check_pole('language', 'Неверно выбраны языки', $dbLangs->rowCount() != count($language));
-    }
+    // if(!check_pole('language', 'Не выбран язык', empty($language)))
+    // {
+    //     try
+    //     {
+    //         $inQuery = implode(',', array_fill(0, count($language), '?'));
+    //         $dbLangs = $db->prepare("SELECT id, name FROM languages WHERE name IN ($inQuery)");
+    //         foreach ($language as $key => $value)
+    //             $dbLangs->bindValue(($key+1), $value);
+    //         $dbLangs->execute();
+    //         $languages = $dbLangs->fetchAll(PDO::FETCH_ASSOC);
+    //     }
+    //     catch(PDOException $e)
+    //     {
+    //         print('Error : '.$e->getMessage());
+    //         exit();
+    //     }
+    //     check_pole('language', 'Неверно выбраны языки', $dbLangs->rowCount() != count($language));
+    // }
     
     if (!$error)
     {
