@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $fio = isset($_POST['fio']) ? $_POST['fio'] : '';
     $number = isset($_POST['number']) ? $_POST['number'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
-    $date = isset($_POST['date']) ? strtotime($_POST['date']) : '';
+    $date = isset($_POST['date']) ? $_POST['date'] : '';
     $radio = isset($_POST['radio']) ? $_POST['radio'] : '';
     $language = isset($_POST['language']) ? $_POST['language'] : [];
     $bio = isset($_POST['bio']) ? $_POST['bio'] : '';
@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     if(!check_pole('email', 'Это поле пустое', empty($email)))
         check_pole('email', 'Неправильный формат: example@mail.ru', !preg_match('/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/', $email));
     if(!check_pole('date', 'Это поле пустое', empty($date)))
-        check_pole('date', 'Неправильная дата', strtotime('now') < $date);
+        check_pole('date', 'Неправильная дата', strtotime('now') < strtotime($date));
     check_pole('radio', "Не выбран пол", empty($radio) || !preg_match('/^(M|W)$/', $radio));
     if(!check_pole('bio', 'Это поле пустое', empty($bio)))
         check_pole('bio', 'Слишком длинное поле, максимум символов - 65535', strlen($bio) > 65535);
@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         try
         {
             $stmt = $db->prepare("INSERT INTO form_data (fio, number, email, date, radio, bio) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$fio, $number, $email, $date, $radio, $bio]);
+            $stmt->execute([$fio, $number, $email, strtotime($date), $radio, $bio]);
             $fid = $db->lastInsertId();
             $stmt1 = $db->prepare("INSERT INTO form_data_lang (id_form, id_lang) VALUES (?, ?)");
             foreach($languages as $row)
