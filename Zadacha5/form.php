@@ -12,10 +12,6 @@
       <div class="head">
         <h2><b>Форма обратной связи</b></h2>
       </div>
-      <?php
-        if($log) echo '<button class="button" type="submit" class="logout_form" name="logout_form">Выйти</button>'; 
-        else echo '<a href="login.php" class="login_form" name="logout_form">Войти</a>';
-      ?>
 
       <div class="mess"><?php if(isset($messages['success'])) echo $messages['success']; ?></div>
       <div class="mess mess_info"><?php if(isset($messages['info'])) echo $messages['info']; ?></div>
@@ -91,7 +87,10 @@
        <?php
           if($log) echo '<button class="button" type="submit" class="edbut">Изменить</button>';
           else echo '<button class="button" type="submit">Отправить</button>';
+          if($log) echo '<button class="button" type="submit" class="logout_form" name="logout_form">Выйти</button>'; 
+          else echo '<button class="button" href="login.php" name="logout_form">Войти</button>';
         ?>
+
     </form>
   </body>
 </html>
