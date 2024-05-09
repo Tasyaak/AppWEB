@@ -88,7 +88,7 @@
           if($log) echo '<button class="button" type="submit" class="edbut">Изменить</button>';
           else echo '<button class="button" type="submit">Отправить</button>';
           if($log) echo '<button class="button" type="submit" class="logout_form" name="logout_form">Выйти</button>'; 
-          else echo '<button class="button" href="login.php" name="logout_form">Войти</button>';
+          else echo '<a class="btnlike" href="login.php" name="logout_form">Войти</a>';
         ?>
 
     </form>
