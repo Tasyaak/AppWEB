@@ -64,6 +64,7 @@ select {
 .btnlike {
   width: 100%;
   display: inline-block;
+  box-sizing: border-box;
   padding: 10px 15px;
   justify-content: center;
   background-color: rgba(20, 173, 56, 0.674);
