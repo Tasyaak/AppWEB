@@ -50,7 +50,7 @@
 <body>
     <form action="" method="post" class="form">
         <div class="mess" style="color: red;"><?php echo $error; ?></div>
-        <h1>Авторизация</h1>
+        <h2>Авторизация</h2>
         <div> <input class="input" style="width: 100%;" type="text" name="login" placeholder="Логин"> </div>
         <div> <input class="input" style="width: 100%;" type="text" name="password" placeholder="Пароль"> </div>
         <button class="button" type="submit">Войти</button>
