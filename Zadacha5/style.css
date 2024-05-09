@@ -66,10 +66,15 @@ select {
   width: 100%;
   display: inline-block;
   box-sizing: border-box;
-  padding: 6px;
+  padding: 3px;
   text-align: center;
   background-color: rgba(20, 173, 56, 0.674);
   color: #fff;
   font-size: 18px;
   border: 1px solid black;
+}
+
+.btnlike:hover {
+  text-decoration: none;
+  color: #fff;
 }
