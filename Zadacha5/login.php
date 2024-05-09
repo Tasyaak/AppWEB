@@ -51,9 +51,9 @@
     <form action="" method="post" class="form">
         <div class="mess" style="color: red;"><?php echo $error; ?></div>
         <h1>Авторизация</h1>
-        <div> <input style="width: 100%;" type="text" name="login" placeholder="Логин"> </div>
-        <div> <input style="width: 100%;" type="text" name="password" placeholder="Пароль"> </div>
-        <button type="submit">Войти</button>
+        <div> <input class="input" style="width: 100%;" type="text" name="login" placeholder="Логин"> </div>
+        <div> <input class="input" style="width: 100%;" type="text" name="password" placeholder="Пароль"> </div>
+        <button class="button" type="submit">Войти</button>
     </form>
 </body>
 </html>
