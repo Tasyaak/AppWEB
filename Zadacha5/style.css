@@ -29,6 +29,7 @@ body {
   background-color: rgba(20, 173, 56, 0.674);
   color: #fff;
   font-size: 18px;
+  border: 1px solid black;
 }
 
 select {
@@ -65,9 +66,10 @@ select {
   width: 100%;
   display: inline-block;
   box-sizing: border-box;
-  padding: 10px 15px;
-  justify-content: center;
+  padding: 6px;
+  text-align: center;
   background-color: rgba(20, 173, 56, 0.674);
   color: #fff;
   font-size: 18px;
+  border: 1px solid black;
 }
