@@ -21,7 +21,6 @@ print ('Вы успешно авторизовались и видите защ�
 session_start();
 
 if (count($_POST)) {
-  echo '1';
   $keyPost = key($_POST);
   if (empty($_SESSION['rem_but']) || $_SESSION['rem_but'] != $keyPost) {
     $id = explode('-', $keyPost)[1];
