@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error = empty($_COOKIE[$str . '_error']);
         $errors[$str] = isset($_COOKIE[$str . '_error']);
         $messages[$str] = "<div class=\"error\">$pole</div>";
-        $values[$str] = empty($_COOKIE[$str . '_value']) ? '' : checkSQL(checkinput($_COOKIE[$str . '_value']));
+        $values[$str] = empty($_COOKIE[$str . '_value']) ? '' : checkinput($_COOKIE[$str . '_value']);
         setcookie($str . '_error', '', time() - 30 * 24 * 60 * 60);
         return;
     }

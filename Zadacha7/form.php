@@ -15,7 +15,7 @@
     $_SESSION['csrf_token'] = $csrf_token;
     ?>
 
-    <input type="hidden" name="csrf_token">
+    <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
     <div class="head">
       <h2><b>Форма обратной связи</b></h2>
     </div>
@@ -24,6 +24,8 @@
       echo $messages['success']; ?></div>
     <div class="mess mess_info"><?php if (isset($messages['info']))
       echo $messages['info']; ?></div>
+    <div class="mess error"><?php if (isset($messages['error']))
+      echo $messages['error']; ?></div>
     <div>
       <label> <input name="fio" class="input <?php echo ($errors['fio'] != NULL) ? 'red' : ''; ?>"
           value="<?php echo $values['fio']; ?>" type="text" placeholder="ФИО" /> </label>
