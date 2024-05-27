@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = isset($_POST['email']) ? checkinput($_POST['email']) : '';
     $date = isset($_POST['date']) ? checkinput($_POST['date']) : '';
     $radio = isset($_POST['radio']) ? checkinput($_POST['radio']) : '';
-    $language = isset($_POST['language']) ? checkinput($_POST['language']) : [];
+    $language = isset($_POST['language']) ? $_POST['language'] : [];
     $bio = isset($_POST['bio']) ? checkinput($_POST['bio']) : '';
     $check = isset($_POST['check']) ? checkinput($_POST['check']) : '';
 
